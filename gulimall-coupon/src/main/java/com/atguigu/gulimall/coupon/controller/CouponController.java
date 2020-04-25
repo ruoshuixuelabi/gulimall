@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +27,7 @@ import com.atguigu.common.utils.R;
  * @email leifengyang@gmail.com
  * @date 2019-10-08 09:36:40
  */
-//@RefreshScope
+@RefreshScope
 @RestController
 @RequestMapping("coupon/coupon")
 public class CouponController {
