@@ -9,9 +9,7 @@ spring:
       oss:
         endpoint: oss-cn-beijing.aliyuncs.com
         bucket: gulimall-hello
-
   application:
     name: gulimall-third-party
-
 server:
   port: 30000

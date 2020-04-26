@@ -32,9 +32,8 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
     public PageUtils queryPage(Map<String, Object> params) {
         IPage<CategoryEntity> page = this.page(
                 new Query<CategoryEntity>().getPage(params),
-                new QueryWrapper<CategoryEntity>()
+                new QueryWrapper<>()
         );
-
         return new PageUtils(page);
     }
 
@@ -44,9 +43,12 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
         List<CategoryEntity> entities = baseMapper.selectList(null);
         //2、组装成父子的树形结构
         //2.1）、找到所有的一级分类
-        return entities.stream().filter(categoryEntity ->
-                categoryEntity.getParentCid() == 0
-        ).peek((menu) -> menu.setChildren(getChildrens(menu, entities))).sorted(Comparator.comparingInt(menu -> (menu.getSort() == null ? 0 : menu.getSort()))).collect(Collectors.toList());
+        return entities.stream()
+                //所有的一级分类的父id为0
+                .filter(categoryEntity -> categoryEntity.getParentCid() == 0)
+                .peek((menu) -> menu.setChildren(getChildrens(menu, entities)))
+                .sorted(Comparator.comparingInt(menu -> (menu.getSort() == null ? 0 : menu.getSort())))
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -61,17 +63,12 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
     public Long[] findCatelogPath(Long catelogId) {
         List<Long> paths = new ArrayList<>();
         List<Long> parentPath = findParentPath(catelogId, paths);
-
         Collections.reverse(parentPath);
-
-
         return parentPath.toArray(new Long[parentPath.size()]);
     }
 
     /**
      * 级联更新所有关联的数据
-     *
-     * @param category
      */
     @Transactional
     @Override
@@ -92,23 +89,31 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
 
     }
 
-
-    //递归查找所有菜单的子菜单
+    /**
+     * 递归查找所有菜单的子菜单
+     *
+     * @param root 当前的菜单
+     * @param all  所有的菜单
+     * @return 当前菜单在所有菜单里面的子菜单
+     */
     private List<CategoryEntity> getChildrens(CategoryEntity root, List<CategoryEntity> all) {
-
-        List<CategoryEntity> children = all.stream().filter(categoryEntity -> {
-            return categoryEntity.getParentCid() == root.getCatId();
-        }).map(categoryEntity -> {
-            //1、找到子菜单
-            categoryEntity.setChildren(getChildrens(categoryEntity, all));
-            return categoryEntity;
-        }).sorted((menu1, menu2) -> {
-            //2、菜单的排序
-            return (menu1.getSort() == null ? 0 : menu1.getSort()) - (menu2.getSort() == null ? 0 : menu2.getSort());
-        }).collect(Collectors.toList());
-
-        return children;
+        return all.stream()
+                .filter(categoryEntity -> categoryEntity.getParentCid().equals(root.getCatId()))
+                .peek(categoryEntity -> {
+                    //1、找到子菜单
+                    categoryEntity.setChildren(getChildrens(categoryEntity, all));
+                    //2、菜单的排序
+                }).sorted(Comparator.comparingInt(menu -> (menu.getSort() == null ? 0 : menu.getSort()))).collect(Collectors.toList());
+//        List<CategoryEntity> children = all.stream().filter(categoryEntity -> {
+//            return categoryEntity.getParentCid() == root.getCatId();
+//        }).map(categoryEntity -> {
+//            //1、找到子菜单
+//            categoryEntity.setChildren(getChildrens(categoryEntity, all));
+//            return categoryEntity;
+//        }).sorted((menu1, menu2) -> {
+//            //2、菜单的排序
+//            return (menu1.getSort() == null ? 0 : menu1.getSort()) - (menu2.getSort() == null ? 0 : menu2.getSort());
+//        }).collect(Collectors.toList());
+//        return children;
     }
-
-
 }
