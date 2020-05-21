@@ -12,7 +12,7 @@
     <!--事件中直接写js片段-->
     <button v-on:click="num++">点赞</button>
     <!--事件指定一个回调函数，必须是Vue实例中定义的函数-->
-    <button @click="cancle">取消</button>
+    <button @click="cancel">取消</button>
     <!--  -->
     <h1>有{{num}}个赞</h1>
     <!-- 事件修饰符 -->
@@ -20,6 +20,7 @@
         大div
         <div style="border: 1px solid blue;padding: 20px;" @click.stop="hello">
             小div <br/>
+            <!--本来点击之后应该会跳转到百度，但是我们可以使用@click.prevent来阻止默认行为，然后在@click.prevent.stop来不单阻止默认行为还阻止事件冒泡-->
             <a href="http://www.baidu.com" @click.prevent.stop="hello">去百度</a>
         </div>
     </div>
@@ -35,7 +36,7 @@
             num: 1
         },
         methods: {
-            cancle() {
+            cancel() {
                 this.num--;
             },
             hello() {

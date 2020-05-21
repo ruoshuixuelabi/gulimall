@@ -8,18 +8,20 @@ import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 
 /**
  * 全局的跨域请求
+ *
  * @author admin
  */
 @Configuration
 public class GulimallCorsConfiguration {
-
     @Bean
     public CorsWebFilter corsWebFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration corsConfiguration = new CorsConfiguration();
-        //1、配置跨域
+        //配置跨域
         corsConfiguration.addAllowedHeader("*");
+        //允许哪些请求方法跨域
         corsConfiguration.addAllowedMethod("*");
+        //允许哪些请求来源跨域
         corsConfiguration.addAllowedOrigin("*");
         //是否允许携带cookie跨域，不设置这个可能请求会丢失cookie信息
         corsConfiguration.setAllowCredentials(true);

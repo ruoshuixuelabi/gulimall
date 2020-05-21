@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
-
 <body>
 <script>
     //数组解构
@@ -15,6 +13,7 @@
     // let a = arr[0];
     // let b = arr[1];
     // let c = arr[2];
+    //以前赋值是上面那样操作的，把1赋值给a，2赋值给b，3赋值给c
     let [a, b, c] = arr;
     console.log(a, b, c)
 
@@ -28,15 +27,15 @@
     //         const language = person.language;
     //对象解构
     const {name: abc, age, language} = person;
+    //这里我想把结解构出来的name属性改名为abc
     console.log(abc, age, language)
+
     //4、字符串扩展
     let str = "hello.vue";
     console.log(str.startsWith("hello"));//true
     console.log(str.endsWith(".vue"));//true
     console.log(str.includes("e"));//true
     console.log(str.includes("hello"));//true
-
-
     //字符串模板
     let ss = `<div>
                     <span>hello world<span>
@@ -44,16 +43,12 @@
     console.log(ss);
 
     //  // 2、字符串插入变量和表达式。变量名写在 ${} 中，${} 中可以放入 JavaScript 表达式。
-
     function fun() {
         return "这是一个函数"
     }
 
     let info = `我是${abc}，今年${age + 10}了, 我想说： ${fun()}`;
     console.log(info);
-
-
 </script>
 </body>
-
 </html>

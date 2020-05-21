@@ -1,3 +1,4 @@
+
 spring:
   datasource:
     username: root
@@ -10,6 +11,15 @@ spring:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
+  thymeleaf:
+    cache: false
+  redis:
+    host: 192.168.1.130
+  cache:
+    type: redis
+    redis:
+      #缓存空值，防止缓存穿透
+      cache-null-values: true
 mybatis-plus:
   mapper-locations: classpath:/mapper/**/*.xml
   global-config:

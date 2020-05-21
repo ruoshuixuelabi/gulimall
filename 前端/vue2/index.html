@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
-
 <body>
 <div id="app">
     <input type="text" v-model="num">
     <button v-on:click="num++">点赞</button>
-    <button v-on:click="cancle">取消</button>
+    <button v-on:click="cancel">取消</button>
     <h1> {{name}} ,非常帅，有{{num}}个人为他点赞{{hello()}}</h1>
 </div>
 <script src="./node_modules/vue/dist/vue.js"></script>
@@ -25,7 +23,7 @@
             num: 1
         },
         methods: {  //封装方法
-            cancle() {
+            cancel() {
                 this.num--;
             },
             hello() {

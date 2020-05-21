@@ -11,7 +11,6 @@ spring:
         #          uri: https://www.qq.com
         #          predicates:
         #            - Query=url,qq
-
         - id: product_route
           uri: lb://gulimall-product
           predicates:
@@ -45,10 +44,18 @@ spring:
           predicates:
             - Path=/api/**
           filters:
+            #路径重写
             - RewritePath=/api/(?<segment>.*),/renren-fast/$\{segment}
 
+        - id: gulimall_host_route
+          uri: lb://gulimall-product
+          predicates:
+            - Host=gulimall.com
+        - id: gulimall_search_route
+          uri: lb://gulimall-search
+          predicates:
+            - Host=search.gulimall.com
 
-
-  ## 前端项目，/api
+  ## 前端项目都会带上，/api  这个前缀
 ## http://localhost:88/api/captcha.jpg   http://localhost:8080/renren-fast/captcha.jpg
 ## http://localhost:88/api/product/category/list/tree http://localhost:10000/product/category/list/tree

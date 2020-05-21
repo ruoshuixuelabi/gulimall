@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
  * 1、开启服务注册发现
  * (配置nacos的注册中心地址)
  * 2、编写网关配置文件
+ *
  * @author admin
  */
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})

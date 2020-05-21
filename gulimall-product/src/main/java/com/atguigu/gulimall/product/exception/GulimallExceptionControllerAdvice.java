@@ -16,32 +16,28 @@ import java.util.Map;
 
 /**
  * 集中处理所有异常
+ * 使用@RestControllerAdvice注解来代替@ResponseBody+@ControllerAdvice
+ * @author admin
  */
 @Slf4j
-//@ResponseBody
-//@ControllerAdvice(basePackages = "com.atguigu.gulimall.product.controller")
 @RestControllerAdvice(basePackages = "com.atguigu.gulimall.product.controller")
 public class GulimallExceptionControllerAdvice {
-
-
-    @ExceptionHandler(value= MethodArgumentNotValidException.class)
-    public R handleVaildException(MethodArgumentNotValidException e){
-        log.error("数据校验出现问题{}，异常类型：{}",e.getMessage(),e.getClass());
+    /**
+     * 该方法是为了JSR303校验出错
+     */
+    @ExceptionHandler(value = MethodArgumentNotValidException.class)
+    public R handleVaildException(MethodArgumentNotValidException e) {
+        log.error("数据校验出现问题{}，异常类型：{}", e.getMessage(), e.getClass());
         BindingResult bindingResult = e.getBindingResult();
-
-        Map<String,String> errorMap = new HashMap<>();
-        bindingResult.getFieldErrors().forEach((fieldError)->{
-            errorMap.put(fieldError.getField(),fieldError.getDefaultMessage());
-        });
-        return R.error(BizCodeEnume.VAILD_EXCEPTION.getCode(),BizCodeEnume.VAILD_EXCEPTION.getMsg()).put("data",errorMap);
+        Map<String, String> errorMap = new HashMap<>();
+        //哪个字段出现了哪个异常
+        bindingResult.getFieldErrors().forEach((fieldError) -> errorMap.put(fieldError.getField(), fieldError.getDefaultMessage()));
+        return R.error(BizCodeEnume.VAILD_EXCEPTION.getCode(), BizCodeEnume.VAILD_EXCEPTION.getMsg()).put("data", errorMap);
     }
 
     @ExceptionHandler(value = Throwable.class)
-    public R handleException(Throwable throwable){
-
-        log.error("错误：",throwable);
-        return R.error(BizCodeEnume.UNKNOW_EXCEPTION.getCode(),BizCodeEnume.UNKNOW_EXCEPTION.getMsg());
+    public R handleException(Throwable throwable) {
+        log.error("错误：", throwable);
+        return R.error(BizCodeEnume.UNKNOW_EXCEPTION.getCode(), BizCodeEnume.UNKNOW_EXCEPTION.getMsg());
     }
-
-
 }

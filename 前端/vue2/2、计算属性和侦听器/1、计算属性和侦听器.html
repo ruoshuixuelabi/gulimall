@@ -34,8 +34,9 @@
             }
         },
         watch: {
+            //这里监控的是xyjNum
             xyjNum(newVal, oldVal) {
-                console.log("newVal="+newVal+";oldVal="+oldVal)
+                console.log("newVal=" + newVal + ";oldVal=" + oldVal)
                 if (newVal >= 3) {
                     this.msg = "库存超出限制";
                     this.xyjNum = 3

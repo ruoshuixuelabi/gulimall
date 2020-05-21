@@ -30,25 +30,27 @@
         console.log(values.length)
     }
 
+    //打印传入的参数长度
     fun(1, 2)      //2
     fun(1, 2, 3, 4)  //4
 
     //3）、箭头函数
     //以前声明一个方法
-    // var print = function (obj) {
-    //     console.log(obj);
-    // }
+    var printold = function (obj) {
+        console.log(obj);
+    }
+    //现在可以这样声明
     var print = obj => console.log(obj);
     print("hello");
-
+    //以前声明方法的语法(多个参数的情况下)
     var sum = function (a, b) {
         c = a + b;
         return a + c;
     }
-
+    //现在的语法
     var sum2 = (a, b) => a + b;
     console.log(sum2(11, 12));
-
+    //有多个参数，并且里面有多行的代码
     var sum3 = (a, b) => {
         c = a + b;
         return a + c;
@@ -67,6 +69,8 @@
     }
 
     //箭头函数+解构
+    var hello3 = (param) => console.log("hello," + param.name);
+    //上面的代码可以简化为，使用解构表达式
     var hello2 = ({name}) => console.log("hello," + name);
     hello2(person);
 

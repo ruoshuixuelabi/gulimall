@@ -40,9 +40,7 @@ public class AttrController {
     // /product/attr/base/listforspu/{spuId}
     @GetMapping("/base/listforspu/{spuId}")
     public R baseAttrlistforspu(@PathVariable("spuId") Long spuId){
-
         List<ProductAttrValueEntity> entities = productAttrValueService.baseAttrlistforspu(spuId);
-
         return R.ok().put("data",entities);
     }
 
@@ -88,10 +86,8 @@ public class AttrController {
     //@RequiresPermissions("product:attr:save")
     public R save(@RequestBody AttrVo attr){
 		attrService.saveAttr(attr);
-
         return R.ok();
     }
-
     ///product/attrgroup/attr/relation/delete
 
 
