@@ -19,7 +19,7 @@ public class SearchParam {
     private Long catalog3Id;
     /**
      * 排序条件
-     * saleCount_asc/desc
+     * sort=saleCount_asc/desc
      * hotScore_asc/desc
      * skuPrice_asc/desc
      */
@@ -28,9 +28,11 @@ public class SearchParam {
      * 过滤条件
      * hasStock(是否有货)、skuPrice区间、brandId、catalog3Id、attrs
      * hasStock=0/1
-     * skuPrice1_500/_500
+     * skuPrice1_500/_500/500_
+     * <p>
+     * 0代表无库存，1代表有库存
      */
-    private Integer hasStock;
+    private Integer hasStock = 1;
     /**
      * 价格区间查询
      */
@@ -46,5 +48,9 @@ public class SearchParam {
     /**
      * 页码
      */
-    private Integer pageNum;
+    private Integer pageNum = 1;
+    /**
+     * 页面上的查询条件
+     */
+    private String _queryString;
 }

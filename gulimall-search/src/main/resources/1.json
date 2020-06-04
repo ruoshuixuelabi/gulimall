@@ -1,0 +1,12 @@
+{
+  "skuId": 1,
+  "skuTitle": "华为手机",
+  "price": 998,
+  "saleCount": 99,
+  "attrs": [
+    {
+      "尺寸": 5,
+      "CPU": "高通"
+    }
+  ]
+}

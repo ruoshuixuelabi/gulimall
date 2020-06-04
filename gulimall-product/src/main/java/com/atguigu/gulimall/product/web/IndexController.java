@@ -83,17 +83,18 @@ public class IndexController {
         String s = "";
         try {
             rLock.lock();
-            System.out.println("写锁加锁成功"+Thread.currentThread().getName());
+            System.out.println("写锁加锁成功" + Thread.currentThread().getName());
             s = UUID.randomUUID().toString();
             Thread.sleep(30000);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }finally {
-            System.out.println("写锁释放成功"+Thread.currentThread().getName());
+        } finally {
+            System.out.println("写锁释放成功" + Thread.currentThread().getName());
             rLock.unlock();
         }
         return s;
     }
+
     @ResponseBody
     @GetMapping("/read")
     public String readValue() {
@@ -102,13 +103,13 @@ public class IndexController {
         String s = "";
         try {
             rLock.lock();
-            System.out.println("读锁加锁成功"+Thread.currentThread().getName());
+            System.out.println("读锁加锁成功" + Thread.currentThread().getName());
             s = UUID.randomUUID().toString();
             Thread.sleep(30000);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }finally {
-            System.out.println("读锁加锁成功"+Thread.currentThread().getName());
+        } finally {
+            System.out.println("读锁加锁成功" + Thread.currentThread().getName());
             rLock.unlock();
         }
         return s;
@@ -126,12 +127,13 @@ public class IndexController {
         door.await();
         return "放假了";
     }
+
     @ResponseBody
     @GetMapping("/gogogo/{id}")
     public String gogogo(@PathVariable("id") Long id) {
         RCountDownLatch door = redissonClient.getCountDownLatch("door");
         door.countDown();
-        return id+"班的人走了";
+        return id + "班的人走了";
     }
 
     /**

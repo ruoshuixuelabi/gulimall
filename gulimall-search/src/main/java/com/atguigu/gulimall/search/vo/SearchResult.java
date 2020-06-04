@@ -26,6 +26,7 @@ public class SearchResult {
      * 总页码
      */
     private Integer totalPages;
+    private List<Integer> pageNavs;
     /**
      * 当前查询到的结果，所涉及的所有品牌
      */
@@ -39,17 +40,31 @@ public class SearchResult {
      */
     private List<CatalogVo> catalogs;
 
+    /**
+     * 面包屑导航数据
+     */
+    private  List<NavVo> navs;
+
+    @Data
+    public static class NavVo {
+        private String navName;
+        private String navValue;
+        private String link;
+    }
+
     @Data
     public static class BrandVo {
         private Long brandId;
         private String brandName;
         private String brandImg;
     }
+
     @Data
     public static class CatalogVo {
         private Long catalogId;
         private String catalogName;
     }
+
     @Data
     public static class AttrVo {
         private Long attrId;
