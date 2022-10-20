@@ -16,9 +16,10 @@
         <module>gulimall-product</module>
         <module>gulimall-ware</module>
         <module>renren-fast</module>
-        <module>renren-generator</module>
+<!--        <module>renren-generator</module>-->
         <module>gulimall-common</module>
         <module>gulimall-gateway</module>
+        <module>gulimall-search</module>
         <module>gulimall-third-party</module>
     </modules>
     <!--统一管理-->
@@ -26,10 +27,10 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <spring-cloud.version>Hoxton.SR5</spring-cloud.version>
-        <spring-boot.version>2.3.0.RELEASE</spring-boot.version>
-        <mybatis-plus-boot.version>3.3.1</mybatis-plus-boot.version>
-        <spring-cloud-alibaba.version>2.2.1.RELEASE</spring-cloud-alibaba.version>
+        <spring-cloud.version>2021.0.4</spring-cloud.version>
+        <spring-boot.version>2.7.4</spring-boot.version>
+        <mybatis-plus-boot.version>3.5.2</mybatis-plus-boot.version>
+        <spring-cloud-alibaba.version>2021.0.4.0</spring-cloud-alibaba.version>
         <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
         <aliyun-spring-boot-dependencies.version>1.0.0</aliyun-spring-boot-dependencies.version>
     </properties>
