@@ -25,23 +25,23 @@ import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
 
-@Configuration
-@EnableSwagger2
+//@Configuration
+//@EnableSwagger2
 public class SwaggerConfig implements WebMvcConfigurer {
 
-    @Bean
-    public Docket createRestApi() {
-        return new Docket(DocumentationType.SWAGGER_2)
-            .apiInfo(apiInfo())
-            .select()
-            //加了ApiOperation注解的类，才生成接口文档
-            .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
-            //包下的类，才生成接口文档
-            //.apis(RequestHandlerSelectors.basePackage("io.renren.controller"))
-            .paths(PathSelectors.any())
-            .build()
-            .securitySchemes(security());
-    }
+//    @Bean
+//    public Docket createRestApi() {
+//        return new Docket(DocumentationType.SWAGGER_2)
+//            .apiInfo(apiInfo())
+//            .select()
+//            //加了ApiOperation注解的类，才生成接口文档
+//            .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
+//            //包下的类，才生成接口文档
+//            //.apis(RequestHandlerSelectors.basePackage("io.renren.controller"))
+//            .paths(PathSelectors.any())
+//            .build()
+//            .securitySchemes(security());
+//    }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()

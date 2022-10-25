@@ -9,3 +9,5 @@
 # Zeppelin ignored files
 /ZeppelinRemoteNotebooks/
 .idea
+*/*/node_modules
+*/target

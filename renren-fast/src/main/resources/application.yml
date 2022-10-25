@@ -2,10 +2,14 @@
 server:
   tomcat:
     uri-encoding: UTF-8
-    max-threads: 1000
-    min-spare-threads: 30
+#    max-threads: 1000
+#    min-spare-threads: 30
+    connection-timeout: 5000ms
+    threads:
+      max: 1000
+      min-spare: 30
   port: 8080
-  connection-timeout: 5000ms
+  #  connection-timeout: 5000ms
   servlet:
     context-path: /renren-fast
 
@@ -43,9 +47,13 @@ spring:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
+      config:
+        import-check:
+          enabled: false
+  main:
+    allow-circular-references: true
 #  resources:
 #    add-mappings: false
-
 
 #mybatis
 mybatis-plus:

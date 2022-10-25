@@ -1,5 +1,6 @@
 package com.atguigu.gulimall.product.service.impl;
 
+import cn.hutool.core.util.StrUtil;
 import com.atguigu.gulimall.product.service.CategoryBrandRelationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,8 +23,8 @@ import org.springframework.util.StringUtils;
 @Service("brandService")
 public class BrandServiceImpl extends ServiceImpl<BrandDao, BrandEntity> implements BrandService {
 
-    @Autowired
-    CategoryBrandRelationService categoryBrandRelationService;
+//    @Autowired
+//    CategoryBrandRelationService categoryBrandRelationService;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -42,9 +43,9 @@ public class BrandServiceImpl extends ServiceImpl<BrandDao, BrandEntity> impleme
     public void updateDetail(BrandEntity brand) {
         //保证冗余字段的数据一致
         this.updateById(brand);
-        if (!StringUtils.isEmpty(brand.getName())) {
+        if (StrUtil.isNotBlank(brand.getName())) {
             //同步更新其他关联表中的数据
-            categoryBrandRelationService.updateBrand(brand.getBrandId(), brand.getName());
+//            categoryBrandRelationService.updateBrand(brand.getBrandId(), brand.getName());
             //TODO 更新其他关联
         }
     }

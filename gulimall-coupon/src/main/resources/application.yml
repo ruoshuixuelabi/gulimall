@@ -1,15 +1,28 @@
 spring:
   datasource:
     username: root
-    password: 123456
-    url: jdbc:mysql://192.168.1.130:3305/gulimall_sms?useUnicode=true&characterEncoding=utf8mb4&useSSL=false
+    password: qianlima
+    url: jdbc:mysql://172.18.30.87:3306/gulimall_sms?useUnicode=true&characterEncoding=utf8mb4&useSSL=false
     driver-class-name: com.mysql.cj.jdbc.Driver
   application:
     name: gulimall-coupon
   cloud:
     nacos:
       discovery:
-        server-addr: 127.0.0.1:8848
+        server-addr: 172.18.30.87:8848
+      config:
+        server-addr: 172.18.30.87:8848
+        #正式环境建议该属性打开
+        import-check:
+          enabled: true
+        namespace: 180296c4-9695-4564-b184-3ca1307365f1
+        group: DEFAULT_GROUP
+  config:
+    import:
+      - optional:nacos:test.yml
+#      - optional:nacos:test01.yml?group=group_01 # 覆盖默认 group，监听 group_01:test01.yml
+#      - optional:nacos:test02.yml?group=group_02&refreshEnabled=false # 不开启动态刷新
+#      - nacos:test03.yml # 在拉取nacos配置异常时会快速失败，会导致 spring 容器启动失败
 mybatis-plus:
   mapper-locations: classpath:/mapper/**/*.xml
   global-config:
