@@ -1,8 +1,7 @@
 package com.atguigu.gulimall.search.service.impl;
 
-import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson2.JSON;
 import com.atguigu.common.to.es.SkuEsModel;
-import com.atguigu.common.utils.R;
 import com.atguigu.gulimall.search.cong.GulimallElasticsearchConfig;
 import com.atguigu.gulimall.search.constant.EsConstant;
 import com.atguigu.gulimall.search.feign.ProductFeignService;

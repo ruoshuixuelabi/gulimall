@@ -1,4 +1,3 @@
-
 spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
@@ -9,8 +8,9 @@ spring:
   application:
     name: gulimall-search
   elasticsearch:
-    rest:
-      uris: 192.168.1.130:9200
+#    rest:
+#      uris: 192.168.1.130:9200
+    uris: 192.168.1.130:9200
   thymeleaf:
     cache: false
 logging:
